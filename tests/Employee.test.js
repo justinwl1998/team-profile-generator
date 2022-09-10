@@ -1,6 +1,6 @@
 const Employee = require('../lib/Employee');
 
-describe('Employee', () => {
+describe('Employee Properties and Getters', () => {
     describe('getName', () => {
         it('should return the defined name', () => {
             const name = "Alice";
@@ -38,4 +38,24 @@ describe('Employee', () => {
             expect(emp.getRole()).toEqual("Employee");
         })
     })
-}) 
+})
+
+describe('Passing invalid parameters', () => {
+    it('should return an empty object when passing an invalid name', () => {
+        const emp = new Employee(123, 0, "");
+
+        expect(emp).toEqual({});
+    })
+
+    it('should return an empty object when passing an invalid ID', () => {
+        const emp = new Employee("Test", true, "Test");
+
+        expect(emp).toEqual({});
+    })
+    
+    it('should return an empty object when passing an invalid Email', () => {
+        const emp = new Employee("", 0, {email: "this is a valid email, totally"})
+
+        expect(emp).toEqual({});
+    })
+})
