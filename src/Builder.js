@@ -103,8 +103,34 @@ class Builder {
     }
 
     addIntern() {
-        console.log("NOT FINISHED YET!");
-        this.standby();
+        inquirer
+            .prompt([
+                {
+                    type: "input",
+                    message: "Input the name of the intern.",
+                    name: "name"
+                },
+                {
+                    type: "number",
+                    message: "Input the intern's ID.",
+                    name: "id"
+                },
+                {
+                    type: "input",
+                    message: "Input the intern's E-mail address.",
+                    name: "email"
+                },
+                {
+                    type: "input",
+                    message: "Input the intern's school.",
+                    name: "school"
+                }                
+            ])
+            .then(data => {
+                this.employeeList.push(new Intern(data.name, data.id, data.email, data.school));
+
+                this.standby();
+            })
     }
 
     //Builds the HTML, should probably use another file
