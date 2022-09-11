@@ -25,16 +25,17 @@ class Builder {
             .then(val => {
                 switch(val.choice) {
                     case "Engineer":
-                        console.log("NOT FINISHED YET!");
+                        this.addEngineer();
                         break;
                     case "Intern":
-                        console.log("NOT FINISHED YET!");
+                        this.addIntern();
                         break;
                     case "Exit":
                         this.exit();
                         break;
                 }
-                this.standby();
+                
+                this.standby(); // this could be recursion, but it'll do for now
             })
     }
 
@@ -65,24 +66,24 @@ class Builder {
             .then(data => {
                 // Add the manager
                 this.employeeList.push(new Manager(data.name, data.id, data.email, data.officeNum));
-                console.log(this.employeeList);
-                console.log(this.employeeList[0].constructor.name)
+                // console.log(this.employeeList);
+                // console.log(this.employeeList[0].constructor.name)
 
-                //Todo: add a standby function that asks to add an engineer, intern or exit the program
                 this.standby();
             })
     }
 
     addEngineer() {
-
+        console.log("NOT FINISHED YET!");
     }
 
     addIntern() {
-
+        console.log("NOT FINISHED YET!");
     }
 
     //Builds the HTML, should probably use another file
     exit() {
+        //Todo: build the actual html
         process.exit(0);
     }
 }
