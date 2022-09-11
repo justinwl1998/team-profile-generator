@@ -34,8 +34,6 @@ class Builder {
                         this.exit();
                         break;
                 }
-                
-                this.standby(); // this could be recursion, but it'll do for now
             })
     }
 
@@ -74,15 +72,44 @@ class Builder {
     }
 
     addEngineer() {
-        console.log("NOT FINISHED YET!");
+        inquirer
+            .prompt([
+                {
+                    type: "input",
+                    message: "Input the name of the engineer.",
+                    name: "name"
+                },
+                {
+                    type: "number",
+                    message: "Input the engineer's ID.",
+                    name: "id"
+                },
+                {
+                    type: "input",
+                    message: "Input the engineer's E-mail address.",
+                    name: "email"
+                },
+                {
+                    type: "input",
+                    message: "Input the engineer's Github username.",
+                    name: "github"
+                }
+            ])
+            .then(data => {
+                this.employeeList.push(new Engineer(data.name, data.id, data.email, data.github));
+
+                this.standby();
+            })
     }
 
     addIntern() {
         console.log("NOT FINISHED YET!");
+        this.standby();
     }
 
     //Builds the HTML, should probably use another file
     exit() {
+        console.log(this.employeeList);
         //Todo: build the actual html
         process.exit(0);
     }
