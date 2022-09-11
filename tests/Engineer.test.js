@@ -9,19 +9,23 @@ describe('Engineer Inherited Properties and Methods', () => {
 
             expect(engi.getName()).toEqual(name);
         })
-        it('should return the defined Id', () => {
-            const id = 1234;
+        describe('getId', () => {
+            it('should return the defined Id', () => {
+                const id = 1234;
 
-            const engi = new Engineer("", 1234, "", "");
+                const engi = new Engineer("", 1234, "", "");
 
-            expect(engi.getId()).toEqual(id);
+                expect(engi.getId()).toEqual(id);
+            })
         })
-        it('should return the defined Email', () => {
-            const email = "test@email.com";
+        describe('getEmail', () => {
+            it('should return the defined Email', () => {
+                const email = "test@email.com";
 
-            const engi = new Engineer("", 0, "test@email.com", "");
+                const engi = new Engineer("", 0, "test@email.com", "");
 
-            expect(engi.getEmail()).toEqual(email);
+                expect(engi.getEmail()).toEqual(email);
+            })
         })
     })
 })
