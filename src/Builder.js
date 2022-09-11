@@ -12,6 +12,32 @@ class Builder {
         this.addManager();
     }
 
+    standby() {
+        inquirer
+            .prompt([
+                {
+                    type: "list",
+                    message: "Would you like to add another employee?",
+                    choices: ["Engineer", "Intern", "Exit"],
+                    name: "choice"
+                }
+            ])
+            .then(val => {
+                switch(val.choice) {
+                    case "Engineer":
+                        console.log("NOT FINISHED YET!");
+                        break;
+                    case "Intern":
+                        console.log("NOT FINISHED YET!");
+                        break;
+                    case "Exit":
+                        this.exit();
+                        break;
+                }
+                this.standby();
+            })
+    }
+
     addManager() {
         inquirer
             .prompt([
@@ -43,6 +69,7 @@ class Builder {
                 console.log(this.employeeList[0].constructor.name)
 
                 //Todo: add a standby function that asks to add an engineer, intern or exit the program
+                this.standby();
             })
     }
 
@@ -56,7 +83,7 @@ class Builder {
 
     //Builds the HTML, should probably use another file
     exit() {
-
+        process.exit(0);
     }
 }
 
