@@ -10,10 +10,12 @@ class Builder {
         this.employeeList = [];
     }
 
+    // The first thing done when the program is run is that it adds a manager, then allows for adding engineers and interns afterwards.
     start() {
         this.addManager();
     }
 
+    // Add an engineer, intern or exit the program.
     standby() {
         inquirer
             .prompt([
@@ -25,6 +27,7 @@ class Builder {
                 }
             ])
             .then(val => {
+                // While this whole program could use only one inquirer call, using this implementation is  easier to read, even if it has a lot of re-used code.
                 switch(val.choice) {
                     case "Engineer":
                         this.addEngineer();
@@ -64,10 +67,7 @@ class Builder {
                 }
             ])
             .then(data => {
-                // Add the manager
                 this.employeeList.push(new Manager(data.name, data.id, data.email, data.officeNum));
-                // console.log(this.employeeList);
-                // console.log(this.employeeList[0].constructor.name)
 
                 this.standby();
             })
@@ -135,15 +135,13 @@ class Builder {
             })
     }
 
-    //Builds the HTML, should probably use another file
+    //Builds the HTML
     exit() {
         const rawHtml = htmlOut.generateOutput(this.employeeList);
 
-        console.log(rawHtml);
         fs.writeFile('./dist/output.html', rawHtml, (err) => {
             err ? console.error(err) : console.log("Output successfully written")
         });
-        //process.exit(0);
     }
 }
 
