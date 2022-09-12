@@ -2,6 +2,8 @@ const inquirer = require('inquirer');
 const Engineer = require('../lib/Engineer');
 const Manager = require('../lib/Manager');
 const Intern = require('../lib/Intern');
+const htmlOut = require('./generateOutput');
+const fs = require('fs');
 
 class Builder {
     constructor() {
@@ -135,9 +137,13 @@ class Builder {
 
     //Builds the HTML, should probably use another file
     exit() {
-        console.log(this.employeeList);
-        //Todo: build the actual html
-        process.exit(0);
+        const rawHtml = htmlOut.generateOutput(this.employeeList);
+
+        console.log(rawHtml);
+        fs.writeFile('./dist/output.html', rawHtml, (err) => {
+            err ? console.error(err) : console.log("Output successfully written")
+        });
+        //process.exit(0);
     }
 }
 
