@@ -27,7 +27,7 @@ class Builder {
                 }
             ])
             .then(val => {
-                // While this whole program could use only one inquirer call, using this implementation is  easier to read, even if it has a lot of re-used code.
+                // While this whole program could use only one inquirer call, using this implementation is easier to read, even if it has a lot of re-used code.
                 switch(val.choice) {
                     case "Engineer":
                         this.addEngineer();

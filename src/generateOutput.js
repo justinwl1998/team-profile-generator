@@ -1,6 +1,5 @@
 
 function generateOutput(data) {
-    // the output may look ugly, but it renders good enough
     let html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -28,18 +27,18 @@ function generateOutput(data) {
         html += `
                 <div class="card w-25 mx-1">
                     <div class="card-header bg-primary">
-                    <h2 class="text-white">${data[i].name}</h2>
+                    <h2 class="text-white">${data[i].getName()}</h2>
                     <h2 class="text-white">${data[i].constructor.name === "Manager" ? `☕ Manager`
                     : data[i].constructor.name === "Engineer" ? `👓 Engineer`
                     : data[i].constructor.name === "Intern" ? `🎓 Intern` : `Employee`}</h2>
                     </div>
                     <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${data[i].id}</li>
-                        <li class="list-group-item">Email: <a href="mailto:${data[i].email}">${data[i].email}</a></li>
-                        ${data[i].constructor.name === "Manager" ? `<li class="list-group-item">Office Number: ${data[i].officeNumber}</li>`
-                    : data[i].constructor.name === "Engineer" ? `<li class="list-group-item">Github: <a href="https://github.com/${data[i].github}">${data[i].github}</a></li>`
-                    : data[i].constructor.name === "Intern" ? `<li class="list-group-item">School: ${data[i].school}</li>`
+                        <li class="list-group-item">ID: ${data[i].getId()}</li>
+                        <li class="list-group-item">Email: <a href="mailto:${data[i].getEmail()}">${data[i].getEmail()}</a></li>
+                        ${data[i].constructor.name === "Manager" ? `<li class="list-group-item">Office Number: ${data[i].getOfficeNumber()}</li>`
+                    : data[i].constructor.name === "Engineer" ? `<li class="list-group-item">Github: <a href="https://github.com/${data[i].getGithub()}">${data[i].getGithub()}</a></li>`
+                    : data[i].constructor.name === "Intern" ? `<li class="list-group-item">School: ${data[i].getSchool()}</li>`
                     : ``}
                         </ul>
                     </div>
