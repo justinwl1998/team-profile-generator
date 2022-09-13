@@ -17,7 +17,7 @@ A Node.js command line program that takes inputs from the user to make a manager
 
 ## Preview
 
-
+View the [demo video](https://drive.google.com/file/d/1oIUuM-gaaFUL4bXi0QG0Ip9wkOGDDBn1/view)
 
 ## Author
 
