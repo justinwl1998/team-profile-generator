@@ -28,9 +28,9 @@ function generateOutput(data) {
                 <div class="card w-25 mx-1">
                     <div class="card-header bg-primary">
                     <h2 class="text-white">${data[i].getName()}</h2>
-                    <h2 class="text-white">${data[i].constructor.name === "Manager" ? `☕ Manager`
-                    : data[i].constructor.name === "Engineer" ? `👓 Engineer`
-                    : data[i].constructor.name === "Intern" ? `🎓 Intern` : `Employee`}</h2>
+                    <h2 class="text-white">${data[i].getRole() === "Manager" ? `☕ Manager`
+                    : data[i].getRole() === "Engineer" ? `👓 Engineer`
+                    : data[i].getRole() === "Intern" ? `🎓 Intern` : `Employee`}</h2>
                     </div>
                     <div class="card-body">
                     <ul class="list-group list-group-flush">
