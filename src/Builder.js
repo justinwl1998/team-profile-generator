@@ -12,7 +12,7 @@ class Builder {
 
     // The first thing done when the program is run is that it adds a manager, then allows for adding engineers and interns afterwards.
     start() {
-        this.addManager();
+        this.addEmployee("Manager");
     }
 
     // Add an engineer, intern or exit the program.
@@ -27,110 +27,66 @@ class Builder {
                 }
             ])
             .then(val => {
-                // While this whole program could use only one inquirer call, using this implementation is easier to read, even if it has a lot of re-used code.
-                switch(val.choice) {
-                    case "Engineer":
-                        this.addEngineer();
-                        break;
-                    case "Intern":
-                        this.addIntern();
-                        break;
-                    case "Exit":
-                        this.exit();
-                        break;
+                if (val.choice !== "Exit") {
+                    this.addEmployee(val.choice);
+                }
+                else {
+                    this.exit();
                 }
             })
     }
 
-    addManager() {
+    addEmployee(type) {
         inquirer
             .prompt([
                 {
                     type: "input",
-                    message: "Input the name of the team manager.",
+                    message: `Input the name of the ${type.toLowerCase()}.`,
                     name: "name"
                 },
                 {
                     type: "number",
-                    message: "Input the team manager's ID.",
+                    message: `Input the ${type.toLowerCase()}'s ID.`,
                     name: "id"
                 },
                 {
                     type: "input",
-                    message: "Input the team manager's E-mail address.",
+                    message: `Input the ${type.toLowerCase()}'s E-mail address.`,
                     name: "email"
                 },
                 {
                     type: "number",
                     message: "Input the office number of the manager.",
-                    name: "officeNum"
-                }
-            ])
-            .then(data => {
-                this.employeeList.push(new Manager(data.name, data.id, data.email, data.officeNum));
-
-                this.standby();
-            })
-    }
-
-    addEngineer() {
-        inquirer
-            .prompt([
-                {
-                    type: "input",
-                    message: "Input the name of the engineer.",
-                    name: "name"
-                },
-                {
-                    type: "number",
-                    message: "Input the engineer's ID.",
-                    name: "id"
-                },
-                {
-                    type: "input",
-                    message: "Input the engineer's E-mail address.",
-                    name: "email"
+                    name: "officeNum",
+                    when(data) { return type === "Manager" }
                 },
                 {
                     type: "input",
                     message: "Input the engineer's Github username.",
-                    name: "github"
-                }
-            ])
-            .then(data => {
-                this.employeeList.push(new Engineer(data.name, data.id, data.email, data.github));
+                    name: "github",
+                    when(data) { return type === "Engineer"}
 
-                this.standby();
-            })
-    }
-
-    addIntern() {
-        inquirer
-            .prompt([
-                {
-                    type: "input",
-                    message: "Input the name of the intern.",
-                    name: "name"
-                },
-                {
-                    type: "number",
-                    message: "Input the intern's ID.",
-                    name: "id"
-                },
-                {
-                    type: "input",
-                    message: "Input the intern's E-mail address.",
-                    name: "email"
                 },
                 {
                     type: "input",
                     message: "Input the intern's school.",
-                    name: "school"
-                }                
-            ])
-            .then(data => {
-                this.employeeList.push(new Intern(data.name, data.id, data.email, data.school));
-
+                    name: "school",
+                    when(data) { return type === "Intern"}
+                }
+            ]).then(data => {
+                let newEmploy;
+                switch (type) {
+                    case "Manager":
+                        newEmploy = new Manager(data.name, data.id, data.email, data.officeNum);
+                        break;
+                    case "Engineer":
+                        newEmploy = new Engineer(data.name, data.id, data.email, data.github);
+                        break;
+                    case "Intern":
+                        newEmploy = new Intern(data.name, data.id, data.email, data.school);
+                        break;
+                }
+                this.employeeList.push(newEmploy);
                 this.standby();
             })
     }
